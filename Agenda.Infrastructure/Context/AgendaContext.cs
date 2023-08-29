@@ -1,0 +1,32 @@
+﻿using Agenda.Domain.Agenda;
+using Agenda.Domain.Agendas;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Agenda.Infrastructure.Context
+{
+    public class AgendaContext : DbContext
+    {
+        public AgendaContext(DbContextOptions<AgendaContext> options) : base(options)
+        {
+        }
+
+        public DbSet<Compromisso> Compromissos { get; set; }
+        public DbSet<Calendario> Calendarios { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AgendaContext).Assembly);
+            base.OnModelCreating(modelBuilder);
+        }
+    }
+}
