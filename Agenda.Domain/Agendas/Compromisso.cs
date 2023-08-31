@@ -2,7 +2,7 @@
 
 namespace Agenda.Domain.Agendas
 {
-    public class Compromisso : Entity<Guid>
+    public class Compromisso : Entity
     {
         public string Titulo { get; set; }
         public string Descricao { get; set; }

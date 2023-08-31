@@ -1,11 +1,5 @@
-﻿using Agenda.Domain.Agenda;
-using Agenda.Domain.Agendas;
+﻿using Agenda.Domain.Agendas;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Agenda.Infrastructure.Context
 {
@@ -18,7 +12,8 @@ namespace Agenda.Infrastructure.Context
         public DbSet<Compromisso> Compromissos { get; set; }
         public DbSet<Calendario> Calendarios { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
-
+        public DbSet<Agenda.Domain.Agendas.Agenda> Agendas { get; set; }
+     
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

@@ -1,4 +1,4 @@
-﻿using Agenda.Domain.Agenda;
+﻿using Agenda.Domain.Agendas;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

@@ -1,9 +1,8 @@
-﻿using Agenda.Domain.Agendas;
-using Agenda.Domain.Base;
+﻿using Agenda.Domain.Base;
 
-namespace Agenda.Domain.Agenda
+namespace Agenda.Domain.Agendas
 {
-    public class Calendario: Entity<Guid>
+    public class Calendario: Entity
     {
         public string Nome { get; set; }
         private readonly List<Compromisso> _compromisso = new List<Compromisso>();

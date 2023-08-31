@@ -1,8 +1,8 @@
 ﻿using Agenda.Domain.Base;
 
-namespace Agenda.Domain.Agenda
+namespace Agenda.Domain.Agendas
 {
-    public class Usuario: Entity<Guid>
+    public class Usuario: Entity
     {
         public string Nome { get; set; }
         public string Email { get; set;}
