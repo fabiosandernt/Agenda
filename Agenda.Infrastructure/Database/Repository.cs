@@ -1,11 +1,6 @@
-﻿
-using Agendas.Domain.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Agenda.Domain.Base;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Agenda.Infrastructure.Database
 {
