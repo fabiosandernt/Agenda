@@ -1,39 +1,47 @@
 ﻿using Agenda.Domain.Base;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-
+using System.Runtime.InteropServices;
 
 namespace Agenda.Infrastructure.Database
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        public Task AddAsync(T entity)
+
+        protected DbSet<T> Query { get; set; }
+        protected DbContext Context { get; set; }
+        public async Task AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await Query.AddAsync(entity);
+            await Context.SaveChangesAsync();
         }
 
         public Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return Query.AnyAsync(expression);      
         }
 
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var entity = await Query.FindAsync(id);
+            Query.Remove(entity);
+            await Context.SaveChangesAsync();
         }
 
-        public Task<ICollection<T>> GetAllAsync()
+        public async Task<ICollection<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await Query.ToListAsync();
         }
 
-        public Task<T> GetByIdAsync(Guid id)
+        public async Task<T> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await Query.FindAsync(id);  
         }
 
-        public Task UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            Query.Update(entity);
+            await Context.SaveChangesAsync();
         }
     }
 }
