@@ -8,8 +8,15 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agenda.Infrastructure", "Agenda.Infrastructure\Agenda.Infrastructure.csproj", "{812EB5F2-58DC-4CAE-A880-482978C648E2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agenda.Application", "Agenda.Application\Agenda.Application.csproj", "{36344EC6-0004-4CEA-975F-CE7AFE518DD9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6398B64F-65CB-4416-AE04-A03AD38301ED} = {6398B64F-65CB-4416-AE04-A03AD38301ED}
+		{812EB5F2-58DC-4CAE-A880-482978C648E2} = {812EB5F2-58DC-4CAE-A880-482978C648E2}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agenda.Api", "Agenda.Api\Agenda.Api.csproj", "{E3B5236E-5E41-4F12-AFDE-D7A5A9E1CFA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agenda.Api", "Agenda.Api\Agenda.Api.csproj", "{E3B5236E-5E41-4F12-AFDE-D7A5A9E1CFA6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{36344EC6-0004-4CEA-975F-CE7AFE518DD9} = {36344EC6-0004-4CEA-975F-CE7AFE518DD9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

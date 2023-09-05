@@ -12,10 +12,8 @@ namespace Agenda.Application
 
             services.AddAutoMapper(typeof(Application.ConfigurationModule).Assembly);
             //services.AddMediatR(typeof(Application.ConfigurationModule).Assembly);
-
             //services.AddScoped<IUserService, UserService>();
         
-
             services.AddHttpClient();
 
             services.AddCors(options =>
