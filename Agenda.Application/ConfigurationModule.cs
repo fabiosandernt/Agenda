@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Agenda.Application.Agenda.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -12,7 +13,8 @@ namespace Agenda.Application
 
             services.AddAutoMapper(typeof(Application.ConfigurationModule).Assembly);
             //services.AddMediatR(typeof(Application.ConfigurationModule).Assembly);
-            //services.AddScoped<IUserService, UserService>();
+            
+            services.AddScoped<IContatoService, ContatoService>();
         
             services.AddHttpClient();
 

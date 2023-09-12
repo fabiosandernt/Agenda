@@ -1,4 +1,5 @@
 ﻿using Agenda.Domain.Base;
+using Agenda.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices;
@@ -7,9 +8,16 @@ namespace Agenda.Infrastructure.Database
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-
         protected DbSet<T> Query { get; set; }
         protected DbContext Context { get; set; }
+
+        public Repository(AgendaContext context)
+        {
+            Context = context;
+            Query = Context.Set<T>();
+        }
+
+
         public async Task AddAsync(T entity)
         {
             await Query.AddAsync(entity);

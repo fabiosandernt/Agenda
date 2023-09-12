@@ -1,5 +1,7 @@
-﻿using Agenda.Infrastructure.Context;
+﻿using Agenda.Domain.Agendas.Repository;
+using Agenda.Infrastructure.Context;
 using Agenda.Infrastructure.Database;
+using Agenda.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,7 +17,8 @@ namespace Agenda.Infrastructure
             });
 
             services.AddScoped(typeof(Repository<>));
-            
+            services.AddScoped<IContatoRepository, ContatoRepository>();
+
             return services;
         }
     }
