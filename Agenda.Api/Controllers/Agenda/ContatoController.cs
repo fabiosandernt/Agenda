@@ -19,8 +19,21 @@ namespace Agenda.Api.Controllers.Agenda
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
-            var contatos = await _contatoService.GetAllAsync();
-            return Ok(contatos);    
+            try
+            {
+                var contatos = await _contatoService.GetAllAsync();
+
+                if (contatos == null || !contatos.Any())
+                {
+                    return NotFound("Nenhum contato encontrado.");
+                }
+
+                return Ok(contatos);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno.");
+            }
         }
        
     }
