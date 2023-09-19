@@ -12,7 +12,7 @@ namespace Agenda.Infrastructure.Context
         public DbSet<Compromisso> Compromissos { get; set; }
         public DbSet<Calendario> Calendarios { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Agenda.Domain.Agendas.Agenda> Agendas { get; set; }
+        public DbSet<Agenda.Domain.Agendas.AgendaBook> Agendas { get; set; }
         public DbSet<Contato> Contatos { get; set; }
      
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

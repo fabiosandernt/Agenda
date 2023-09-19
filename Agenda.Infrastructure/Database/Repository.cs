@@ -2,7 +2,6 @@
 using Agenda.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Runtime.InteropServices;
 
 namespace Agenda.Infrastructure.Database
 {
@@ -38,7 +37,8 @@ namespace Agenda.Infrastructure.Database
 
         public async Task<ICollection<T>> GetAllAsync()
         {
-            return await Query.ToListAsync();
+            var consulta = await Query.ToListAsync();
+            return consulta;
         }
 
         public async Task<T> GetByIdAsync(Guid id)

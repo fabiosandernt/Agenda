@@ -18,6 +18,7 @@ namespace Agenda.Infrastructure
 
             services.AddScoped(typeof(Repository<>));
             services.AddScoped<IContatoRepository, ContatoRepository>();
+            services.AddScoped<IAgendaRepository, AgendaRepository>(); 
 
             return services;
         }

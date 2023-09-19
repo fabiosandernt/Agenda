@@ -16,16 +16,17 @@ namespace Agenda.Application.Agenda.Services
             _mapper = mapper;
         }
 
-        public async Task<ContatoDto> Create(ContatoDto dto)
+        public async Task<ContatoDto> CreateContatoAsync(ContatoDto dto)
         {
             if (await _contatoRepository.AnyAsync(x => x.Nome == dto.Nome))
                 throw new Exception("Já existe este contato cadastrado");
             try
             {
                 var contato = _mapper.Map<Contato>(dto);
-                await _contatoRepository.AddAsync(contato);
 
-                return  _mapper.Map<ContatoDto>(contato);
+                await _contatoRepository.AddAsync(contato);              
+         
+                return _mapper.Map<ContatoDto>(contato);
             }
             catch (Exception ex)
             {
@@ -37,6 +38,7 @@ namespace Agenda.Application.Agenda.Services
         public async Task<List<ContatoDto>> GetAllAsync()
         {
             var contatos = await _contatoRepository.GetAllAsync(); 
+
             return _mapper.Map<List<ContatoDto>>(contatos); 
         }
     }

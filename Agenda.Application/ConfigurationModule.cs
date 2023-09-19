@@ -18,7 +18,8 @@ namespace Agenda.Application
             //services.AddMediatR(typeof(Application.ConfigurationModule).Assembly);
             
             services.AddScoped<IContatoService, ContatoService>();
-        
+            services.AddScoped<IAgendaService, AgendaService>();
+
             services.AddHttpClient();
 
             services.AddCors(options =>

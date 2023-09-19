@@ -10,8 +10,8 @@ namespace Agenda.Domain.Agendas
             Telefone = telefone;
         }
 
-        public string Nome { get; set; }
-        public string Telefone { get; set; }        
+        public string Nome { get; private set; }
+        public string Telefone { get; private set; }
 
     }
 }
