@@ -36,7 +36,7 @@ namespace Agenda.Api.Controllers.Agenda
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno.");
+                return StatusCode(StatusCodes.Status400BadRequest, "Ocorreu um erro interno.");
             }
         }
 
