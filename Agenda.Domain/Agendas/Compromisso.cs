@@ -2,18 +2,24 @@
 
 namespace Agenda.Domain.Agendas
 {
-    public class Compromisso 
+    public class Compromisso : Entity
     {
-        public Guid? Id { get; set; }
-        public string? Titulo { get; set; }
-        public string? Descricao { get; set; }
-        public DateTime? HoraDeInicio {get; set; }
-        public DateTime? HoraDeTermino { get; set; }
-           
+        public string Titulo { get; set; }
+        public string Descricao { get; set; }
+        public DateTime HoraDeInicio { get; set; }
+        public DateTime HoraDeTermino { get; set; }
+        protected Compromisso() { }
         public void Reagendar(DateTime novaHoraDeInicio, DateTime novaHoraDeTermino)
         {
-            HoraDeInicio = novaHoraDeInicio;
-            HoraDeTermino = novaHoraDeTermino;
+            if (novaHoraDeInicio < novaHoraDeTermino)
+            {
+                HoraDeInicio = novaHoraDeInicio;
+                HoraDeTermino = novaHoraDeTermino;
+            }
+            else
+            {
+                throw new ArgumentException("A hora de término deve ser posterior à hora de início.");
+            }
         }
     }
 }

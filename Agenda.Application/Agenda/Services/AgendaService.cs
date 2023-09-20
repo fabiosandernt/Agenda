@@ -20,15 +20,15 @@ namespace Agenda.Application.Agenda.Services
 
         public async Task<ContatoDto> CriarContatoAsync(ContatoDto contatoDto)
         {
-          
-            var contato = _mapper.Map<Contato>(contatoDto);
-            
+
             var agenda = new AgendaBook("Joaquim");
                         
-            agenda.AdicionarContato(contato);            
+            var contato = _mapper.Map<Contato>(contatoDto);
+                       
+            agenda.AdicionarContato(contato);
 
-            await _agendaRepository.AddAsync(agenda);
-            
+            await _contatoRepository.UpdateAsync(contato);
+                       
             var novoContatoDto = _mapper.Map<ContatoDto>(contato);
 
             return novoContatoDto;

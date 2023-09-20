@@ -29,8 +29,8 @@ namespace Agenda.Api.Controllers.Agenda
                     return BadRequest("Dados de contato inválidos.");
                 }
 
-               
-               var novoContato = await _contatoService.CreateContatoAsync(contatoDto);
+                var novoContato = await _agendaService.CriarContatoAsync(contatoDto);
+                //var novoContato = await _contatoService.CreateContatoAsync(contatoDto);
 
                 return Ok(novoContato);
             }
