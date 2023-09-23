@@ -7,5 +7,6 @@ namespace Agenda.Application.Agenda.Services
     {
         Task<ContatoDto>  CreateContatoAsync (ContatoDto contato);
         Task<List<ContatoDto>> GetAllAsync ();
+        Task<ContatoDto> GetById(Guid id);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Agenda.Domain.Base;
 using Agenda.Infrastructure.Context;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using System.Linq.Expressions;
 
 namespace Agenda.Infrastructure.Database

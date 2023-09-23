@@ -35,6 +35,15 @@ namespace Agenda.Application.Agenda.Services
            
         }
 
+        public async Task<ContatoDto> GetById(Guid id)
+        {
+            var contato = await _contatoRepository.GetByIdAsync(id);
+            if (contato == null)
+                throw new Exception("Contato não existe");
+
+            return _mapper.Map<ContatoDto>(contato);
+        }
+
         public async Task<List<ContatoDto>> GetAllAsync()
         {
             var contatos = await _contatoRepository.GetAllAsync(); 

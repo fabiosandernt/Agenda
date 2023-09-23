@@ -40,6 +40,22 @@ namespace Agenda.Api.Controllers.Agenda
             }
         }
 
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetById([FromRoute]Guid id)
+        {
+            try
+            {
+                var contato = await _contatoService.GetById(id);
+                return Ok(contato);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }         
+
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {

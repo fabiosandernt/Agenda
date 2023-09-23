@@ -8,7 +8,6 @@ namespace Agenda.Domain.Base
           Id = Guid.NewGuid();
         }
         public Guid Id { get; protected set; }
-
-        public bool Status() => true;
+    
     }
 }
