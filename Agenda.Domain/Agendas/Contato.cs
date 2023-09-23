@@ -4,14 +4,15 @@ namespace Agenda.Domain.Agendas
 {
     public class Contato: Entity
     {
+        protected Contato() { } 
         public Contato(string nome, string telefone)
         {
             Nome = nome;
             Telefone = telefone;
         }
 
-        public string Nome { get; private set; }
-        public string Telefone { get; private set; }
+        public string Nome { get; }
+        public string Telefone { get; }
 
     }
 }
