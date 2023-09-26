@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Agenda.Infrastructure.Migrations
 {
     [DbContext(typeof(AgendaContext))]
-    [Migration("20230913003142_contatos")]
-    partial class contatos
+    [Migration("20230926231851_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace Agenda.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Agendas");
+                    b.ToTable("Agendas", (string)null);
                 });
 
             modelBuilder.Entity("Agenda.Domain.Agendas.Calendario", b =>
@@ -61,6 +61,9 @@ namespace Agenda.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("AgendaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -77,6 +80,8 @@ namespace Agenda.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AgendaId");
+
                     b.ToTable("Compromissos");
                 });
 
@@ -84,6 +89,9 @@ namespace Agenda.Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AgendaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nome")
@@ -96,7 +104,9 @@ namespace Agenda.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contatos");
+                    b.HasIndex("AgendaId");
+
+                    b.ToTable("Contatos", (string)null);
                 });
 
             modelBuilder.Entity("Agenda.Domain.Agendas.Usuario", b =>
@@ -117,6 +127,35 @@ namespace Agenda.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios", (string)null);
+                });
+
+            modelBuilder.Entity("Agenda.Domain.Agendas.Compromisso", b =>
+                {
+                    b.HasOne("Agenda.Domain.Agendas.AgendaBook", "Agenda")
+                        .WithMany("Compromissos")
+                        .HasForeignKey("AgendaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Agenda");
+                });
+
+            modelBuilder.Entity("Agenda.Domain.Agendas.Contato", b =>
+                {
+                    b.HasOne("Agenda.Domain.Agendas.AgendaBook", "Agenda")
+                        .WithMany("Contatos")
+                        .HasForeignKey("AgendaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Agenda");
+                });
+
+            modelBuilder.Entity("Agenda.Domain.Agendas.AgendaBook", b =>
+                {
+                    b.Navigation("Compromissos");
+
+                    b.Navigation("Contatos");
                 });
 #pragma warning restore 612, 618
         }

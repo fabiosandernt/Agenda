@@ -18,20 +18,6 @@ namespace Agenda.Application.Agenda.Services
             _mapper = mapper;
         }
 
-        public async Task<ContatoDto> CriarContatoAsync(ContatoDto contatoDto)
-        {
-
-            var agenda = new AgendaBook("Joaquim");
-                        
-            var contato = _mapper.Map<Contato>(contatoDto);
-                       
-            agenda.AdicionarContato(contato);
-
-            await _contatoRepository.UpdateAsync(contato);
-                       
-            var novoContatoDto = _mapper.Map<ContatoDto>(contato);
-
-            return novoContatoDto;
-        }
+        
     }
 }

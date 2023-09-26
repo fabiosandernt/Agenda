@@ -20,6 +20,7 @@ namespace Agenda.Application.Agenda.Services
         {
             if (await _contatoRepository.AnyAsync(x => x.Nome == dto.Nome))
                 throw new Exception("Já existe este contato cadastrado");
+
             try
             {
                 var contato = _mapper.Map<Contato>(dto);
@@ -30,7 +31,7 @@ namespace Agenda.Application.Agenda.Services
             }
             catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
            
         }

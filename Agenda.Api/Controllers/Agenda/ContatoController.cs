@@ -1,6 +1,5 @@
 ﻿using Agenda.Application.Agenda.Dtos;
 using Agenda.Application.Agenda.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agenda.Api.Controllers.Agenda
@@ -11,12 +10,10 @@ namespace Agenda.Api.Controllers.Agenda
     public class ContatoController : ControllerBase
     {
         private readonly IContatoService _contatoService;
-        private readonly IAgendaService _agendaService;
-
-        public ContatoController(IContatoService contatoService, IAgendaService agendaService)
+       
+        public ContatoController(IContatoService contatoService)
         {
-            _contatoService = contatoService;
-            _agendaService = agendaService;
+            _contatoService = contatoService;            
         }
 
         [HttpPost("criar")] 
@@ -28,9 +25,8 @@ namespace Agenda.Api.Controllers.Agenda
                 {
                     return BadRequest("Dados de contato inválidos.");
                 }
-
-                var novoContato = await _agendaService.CriarContatoAsync(contatoDto);
-                //var novoContato = await _contatoService.CreateContatoAsync(contatoDto);
+                               
+                var novoContato = await _contatoService.CreateContatoAsync(contatoDto);
 
                 return Ok(novoContato);
             }
