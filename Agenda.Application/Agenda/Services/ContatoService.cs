@@ -8,24 +8,29 @@ namespace Agenda.Application.Agenda.Services
     public class ContatoService : IContatoService
     {
         private readonly IContatoRepository _contatoRepository;
+        private readonly IAgendaRepository _agendaRepository;
         private readonly IMapper _mapper;
 
-        public ContatoService(IContatoRepository contatoRepository, IMapper mapper)
+        public ContatoService(IContatoRepository contatoRepository,IAgendaRepository agendaRepository, IMapper mapper)
         {
+            _agendaRepository = agendaRepository;
             _contatoRepository = contatoRepository;
             _mapper = mapper;
         }
 
-        public async Task<ContatoDto> CreateContatoAsync(ContatoDto dto)
+        public async Task<ContatoDto> CreateContatoAsync(ContatoDto dto, Guid id)
         {
+            
             if (await _contatoRepository.AnyAsync(x => x.Nome == dto.Nome))
                 throw new Exception("Já existe este contato cadastrado");
-
+              
             try
-            {
-                var contato = _mapper.Map<Contato>(dto);
-
-                await _contatoRepository.AddAsync(contato);              
+            {                 
+                                                                                         
+                var contato = _mapper.Map<Contato>(dto);                
+                var agenda = await _agendaRepository.GetByIdAsync(id);
+                contato.AgendaId = agenda.Id;
+                await _contatoRepository.AddAsync(contato);             
          
                 return _mapper.Map<ContatoDto>(contato);
             }

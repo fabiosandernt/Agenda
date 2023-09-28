@@ -4,13 +4,13 @@ namespace Agenda.Domain.Agendas
 {
     public class AgendaBook : Entity
     {
-        public string Nome { get; set; }     
+        public string Nome { get; set; }   
         
-        public List<Contato> Contatos { get; set; } = new List<Contato>();       
-        public List<Compromisso> Compromissos { get; set; } = new List<Compromisso>();
+        public virtual List<Contato> Contatos { get; set; } = new List<Contato>();       
+        public virtual List<Compromisso> Compromissos { get; set; } = new List<Compromisso>();
 
         //EF
-        protected AgendaBook()
+        public AgendaBook()
         {
 
         }        

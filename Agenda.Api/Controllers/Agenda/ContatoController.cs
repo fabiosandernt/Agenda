@@ -17,17 +17,17 @@ namespace Agenda.Api.Controllers.Agenda
         }
 
         [HttpPost("criar")] 
-        public async Task<IActionResult> CriarContatoAsync([FromQuery] ContatoDto contatoDto)
+        public async Task<IActionResult> CriarContatoAsync([FromQuery] ContatoDto contatoDto, Guid id)
         {
             try
             {
                 if (contatoDto == null)
                 {
                     return BadRequest("Dados de contato inválidos.");
-                }
+                }                             
                                
-                var novoContato = await _contatoService.CreateContatoAsync(contatoDto);
-
+                var novoContato = await _contatoService.CreateContatoAsync(contatoDto, id);
+    
                 return Ok(novoContato);
             }
             catch (Exception ex)

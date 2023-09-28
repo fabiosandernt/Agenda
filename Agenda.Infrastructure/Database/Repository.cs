@@ -1,8 +1,8 @@
-﻿using Agenda.Domain.Base;
+﻿
+
+using Agenda.Domain.Base;
 using Agenda.Infrastructure.Context;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 using System.Linq.Expressions;
 
 namespace Agenda.Infrastructure.Database
@@ -39,8 +39,16 @@ namespace Agenda.Infrastructure.Database
 
         public async Task<ICollection<T>> GetAllAsync()
         {
-            var consulta = await Query.ToListAsync();
-            return consulta;
+            try
+            {
+                var consulta = await Query.ToListAsync();
+                return consulta;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }       
         }
 
         public async Task<T> GetByIdAsync(Guid id)

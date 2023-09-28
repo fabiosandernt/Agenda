@@ -5,7 +5,7 @@ namespace Agenda.Application.Agenda.Services
 {
     public interface IContatoService
     {
-        Task<ContatoDto>  CreateContatoAsync (ContatoDto contato);
+        Task<ContatoDto>  CreateContatoAsync (ContatoDto contato, Guid id);
         Task<List<ContatoDto>> GetAllAsync ();
         Task<ContatoDto> GetById(Guid id);
     }

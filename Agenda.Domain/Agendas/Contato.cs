@@ -4,11 +4,11 @@ namespace Agenda.Domain.Agendas
 {
     public class Contato: Entity
     {
-        public string Nome { get; }
-        public string Telefone { get; }
+        public string Nome { get; set; }
+        public string Telefone { get; set; }
         public Guid AgendaId { get; set; }
         public AgendaBook Agenda { get; set; }
-        protected Contato() 
+        public Contato() 
         { 
         }
     }

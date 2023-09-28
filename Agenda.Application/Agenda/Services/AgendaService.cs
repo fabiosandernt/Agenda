@@ -1,5 +1,4 @@
 ﻿using Agenda.Application.Agenda.Dtos;
-using Agenda.Domain.Agendas;
 using Agenda.Domain.Agendas.Repository;
 using AutoMapper;
 
@@ -7,17 +6,23 @@ namespace Agenda.Application.Agenda.Services
 {
     public class AgendaService : IAgendaService
     {
-        private readonly IContatoRepository _contatoRepository;
-        private readonly IAgendaRepository _agendaRepository;
+            private readonly IAgendaRepository _agendaRepository;
         private readonly IMapper _mapper;
 
-        public AgendaService(IContatoRepository contatoRepository, IAgendaRepository agendaRepository, IMapper mapper)
+        public AgendaService(IAgendaRepository agendaRepository, IMapper mapper)
         {
-            _contatoRepository = contatoRepository;
             _agendaRepository = agendaRepository;
             _mapper = mapper;
         }
 
-        
+        public async Task<AgendaBookDto> GetAgendaBookByIdAsync(Guid id)
+        {
+            if (id == null)
+                throw new Exception("Id Null, fvort informar um id");
+
+            var agenda = await _agendaRepository.GetByIdAsync(id);
+
+            return  _mapper.Map<AgendaBookDto>(agenda);
+        }                
     }
 }
