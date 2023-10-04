@@ -1,5 +1,4 @@
 ﻿using Agenda.Application.Agenda.Dtos;
-using Agenda.Domain.Agendas;
 using Agenda.Domain.Agendas.Repository;
 using AutoMapper;
 
@@ -18,6 +17,8 @@ namespace Agenda.Application.Agenda.Services
 
         public async Task<AgendaBookDto> CreateAgendaAsync(AgendaBookDto dto)
         {
+            if (id == null)
+                throw new Exception("Id Null, favor informar um id");
 
             var agenda = _mapper.Map<AgendaBook>(dto);
             await _agendaRepository.AddAsync(agenda);

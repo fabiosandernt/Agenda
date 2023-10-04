@@ -9,11 +9,13 @@ namespace Agenda.Application.Agenda.Services
     {
         private readonly IAgendaRepository _agendaRepository;
         private readonly IContatoRepository _contatoRepository;
+        private readonly IAgendaRepository _agendaRepository;
         private readonly IMapper _mapper;
 
 
         public ContatoService(IContatoRepository contatoRepository, IMapper mapper, IAgendaRepository agendaRepository)
         {
+            _agendaRepository = agendaRepository;
             _contatoRepository = contatoRepository;
             _mapper = mapper;
             _agendaRepository = agendaRepository;
@@ -21,6 +23,7 @@ namespace Agenda.Application.Agenda.Services
 
         public async Task<ContatoDto> CreateContatoAsync(ContatoDto dto, Guid id)
         {
+            
             if (await _contatoRepository.AnyAsync(x => x.Nome == dto.Nome))
                 throw new Exception("Já existe este contato cadastrado");
             

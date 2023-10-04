@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Agenda.Domain.Agendas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace Agenda.Application.Agenda.Dtos
         public  Guid Id { get; set; }
         public string Nome { get; set; }
         public virtual List<ContatoDto> ContatosDto { get; set; } = new List<ContatoDto>();
-
+        
     }
 }

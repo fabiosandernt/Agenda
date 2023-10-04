@@ -48,7 +48,7 @@ namespace Agenda.Infrastructure.Database
             {
 
                 throw new Exception(ex.Message);
-            }
+            }       
         }
 
         public async Task<T> GetByIdAsync(Guid id)
