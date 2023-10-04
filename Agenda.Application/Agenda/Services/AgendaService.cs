@@ -1,4 +1,5 @@
 ﻿using Agenda.Application.Agenda.Dtos;
+using Agenda.Domain.Agendas;
 using Agenda.Domain.Agendas.Repository;
 using AutoMapper;
 
@@ -15,6 +16,14 @@ namespace Agenda.Application.Agenda.Services
             _mapper = mapper;
         }
 
+        public async Task<AgendaBookDto> CreateAgendaAsync(AgendaBookDto dto)
+        {
+
+            var agenda = _mapper.Map<AgendaBook>(dto);
+            await _agendaRepository.AddAsync(agenda);
+            return _mapper.Map<AgendaBookDto>(agenda);
+        }
+
         public async Task<AgendaBookDto> GetAgendaBookByIdAsync(Guid id)
         {
             if (id == null)
@@ -23,6 +32,6 @@ namespace Agenda.Application.Agenda.Services
             var agenda = await _agendaRepository.GetByIdAsync(id);
 
             return _mapper.Map<AgendaBookDto>(agenda);
-        }        
+        }       
     }
 }

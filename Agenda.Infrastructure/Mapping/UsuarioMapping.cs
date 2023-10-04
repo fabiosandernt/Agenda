@@ -13,6 +13,8 @@ namespace Agenda.Infrastructure.Mapping
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x=>x.Nome).IsRequired().HasMaxLength(200);
             builder.Property(x=>x.Email).IsRequired();
+
+            builder.HasMany(x => x.AgendaBooks).WithOne(x => x.Usuario);
         }
     }
 }

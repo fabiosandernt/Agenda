@@ -1,4 +1,5 @@
 ﻿using Agenda.Application.Account.Dtos;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Agenda.Application.Account.Services
 {
     public class UsuarioService : IUsuarioService
     {
-        public Task<UsuarioDto> Create(UsuarioDto usuarioDto)
+        public Task<UsuarioDto> CreateUsuarioAsync(UsuarioDto dto)
         {
             throw new NotImplementedException();
         }

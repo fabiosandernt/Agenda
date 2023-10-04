@@ -30,7 +30,7 @@ namespace Agenda.Application.Agenda.Services
 
 
                 var agenda = await _agendaRepository.GetByIdAsync(id);
-                contato.Agenda = agenda;
+                contato.AgendaId = agenda.Id;
                 await _contatoRepository.AddAsync(contato);              
          
                 return _mapper.Map<ContatoDto>(contato);
@@ -45,11 +45,13 @@ namespace Agenda.Application.Agenda.Services
         {
             var contato = await _contatoRepository.GetByIdAsync(id);
             if (contato == null)
+
             {
                 throw new Exception("Contato não existe");
             }
             await _contatoRepository.UpdateAsync(contato);
             return _mapper.Map<ContatoDto>(contato);
+
         }
 
         public async Task<ContatoDto> DeleteContatoAsync(Guid id)

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Agenda.Infrastructure.Mapping
 {
-    public class AgendaMapping: IEntityTypeConfiguration<AgendaBookDto>
+    public class AgendaMapping: IEntityTypeConfiguration<AgendaBook>
     {
-        public void Configure(EntityTypeBuilder<AgendaBookDto> builder) 
+        public void Configure(EntityTypeBuilder<AgendaBook> builder) 
         {
             builder.ToTable("Agendas");
             builder.HasKey(a => a.Id);

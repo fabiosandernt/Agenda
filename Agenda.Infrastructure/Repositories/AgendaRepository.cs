@@ -5,7 +5,7 @@ using Agenda.Infrastructure.Database;
 
 namespace Agenda.Infrastructure.Repositories
 {
-    public class AgendaRepository : Repository<AgendaBookDto>, IAgendaRepository
+    public class AgendaRepository : Repository<AgendaBook>, IAgendaRepository
     {
         public AgendaRepository(AgendaContext context) : base(context)
         {

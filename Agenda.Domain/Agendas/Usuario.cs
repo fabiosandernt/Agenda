@@ -6,7 +6,7 @@ namespace Agenda.Domain.Agendas
     {
         public string Nome { get; set; }
         public string Email { get; set;}
-              
+        public List<AgendaBook> AgendaBooks { get; set; } = new List<AgendaBook>();    
         public void Update(string nome, string email)
         {
             Nome = nome;

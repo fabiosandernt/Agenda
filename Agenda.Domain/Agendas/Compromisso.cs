@@ -10,7 +10,7 @@ namespace Agenda.Domain.Agendas
         public DateTime HoraDeTermino { get; set; }
 
         public Guid AgendaId { get; set; }
-        public AgendaBookDto Agenda { get; set; }
+        public AgendaBook Agenda { get; set; }
 
         //EF
         protected Compromisso() { }
