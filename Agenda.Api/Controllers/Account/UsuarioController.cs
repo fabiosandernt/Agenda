@@ -1,37 +1,30 @@
 ﻿using Agenda.Application.Account.Dtos;
 using Agenda.Application.Account.Services;
-using Agenda.Application.Agenda.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agenda.Api.Controllers.Account
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    //[Authorize]
     public class UsuarioController : ControllerBase
     {
-        private readonly IUsuarioService _usuarioService;
+        private readonly IUsuarioService _usuarioservice;
 
-        public UsuarioController(IUsuarioService usuarioService)
+        public UsuarioController (IUsuarioService usuarioservice)
         {
-            _usuarioService = usuarioService;
+            _usuarioservice = usuarioservice;
         }
 
         [HttpPost("criar")]
-        public async Task<IActionResult> CriarUsuarioAsync(UsuarioDto dto)
+        public async Task<IActionResult> CriarUsuarioAsync([FromQuery]UsuarioDto usuarioDto)
         {
             try
             {
-                if (dto == null)
-                {
-                    return BadRequest("Dados de contato inválidos.");
-                }
+                if (usuarioDto == null)
+                    return BadRequest("Dados de usuario invalidos");
 
-                var usuario = await _usuarioService.CreateUsuarioAsync(dto);
-
-                return Ok(usuario);
+                var novoUsuario = await _usuarioservice.CreateUsuarioAsync(usuarioDto);
+                return Ok(novoUsuario);
             }
-            catch (Exception ex)
+            catch
             {
                 return StatusCode(StatusCodes.Status400BadRequest, "Ocorreu um erro interno.");
             }

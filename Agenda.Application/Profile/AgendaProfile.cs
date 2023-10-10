@@ -1,10 +1,6 @@
-﻿using Agenda.Application.Agenda.Dtos;
+﻿using Agenda.Application.Account.Dtos;
+using Agenda.Application.Agenda.Dtos;
 using Agenda.Domain.Agendas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Agenda.Application.Profile
 {
@@ -14,6 +10,12 @@ namespace Agenda.Application.Profile
         {
             CreateMap<Contato, ContatoDto>();
             CreateMap<ContatoDto, Contato>();
+            CreateMap<Usuario, UsuarioDto>();
+            CreateMap<UsuarioDto, Usuario>();
+            CreateMap<AgendaBook, AgendaBookDto>();
+            CreateMap<AgendaBookDto, AgendaBook>();
+            CreateMap<Compromisso, CompromissoDto>();
+            CreateMap<CompromissoDto, Compromisso>();
         }  
     }
 }

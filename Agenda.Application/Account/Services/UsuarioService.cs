@@ -1,4 +1,6 @@
 ﻿using Agenda.Application.Account.Dtos;
+using Agenda.Domain.Agendas;
+using Agenda.Domain.Agendas.Repository;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -10,14 +12,32 @@ namespace Agenda.Application.Account.Services
 {
     public class UsuarioService : IUsuarioService
     {
-        public Task<UsuarioDto> CreateUsuarioAsync(UsuarioDto dto)
+        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IMapper _mapper;
+        public UsuarioService(IUsuarioRepository usuarioRepository, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _usuarioRepository = usuarioRepository;
+            _mapper = mapper;
         }
 
-        public Task<List<UsuarioDto>> GetAllAsync()
+        public async Task<UsuarioDto> CreateUsuarioAsync(UsuarioDto dto)
         {
-            throw new NotImplementedException();
+            if (await _usuarioRepository.AnyAsync(x => x.Nome == dto.Nome))
+                throw new Exception("Já existe este contato cadastrado");
+            try
+            {
+                var usuario = _mapper.Map<Usuario>(dto);
+
+                await _usuarioRepository.AddAsync(usuario);
+                return _mapper.Map<UsuarioDto>(usuario);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
+
+
     }
 }

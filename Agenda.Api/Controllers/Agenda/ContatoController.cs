@@ -22,14 +22,13 @@ namespace Agenda.Api.Controllers.Agenda
             try
             {
                 if (contatoDto == null)
-                {
                     return BadRequest("Dados de contato inválidos.");
-                }
+
                 var novoContato = await _contatoService.CreateContatoAsync(contatoDto, id);
 
                 return Ok(novoContato);
             }
-            catch (Exception ex)
+            catch
             {
                 return StatusCode(StatusCodes.Status400BadRequest, "Ocorreu um erro interno.");
             }

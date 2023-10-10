@@ -10,6 +10,5 @@ namespace Agenda.Application.Account.Services
     public interface IUsuarioService
     {
         Task<UsuarioDto> CreateUsuarioAsync(UsuarioDto dto);
-        Task<List<UsuarioDto>> GetAllAsync();
     }
 }

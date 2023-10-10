@@ -14,17 +14,17 @@ namespace Agenda.Domain.Agendas
 
         //EF
         protected Compromisso() { }
-        public void Reagendar(DateTime novaHoraDeInicio, DateTime novaHoraDeTermino)
-        {
-            if (novaHoraDeInicio < novaHoraDeTermino)
-            {
-                HoraDeInicio = novaHoraDeInicio;
-                HoraDeTermino = novaHoraDeTermino;
-            }
-            else
-            {
-                throw new ArgumentException("A hora de término deve ser posterior à hora de início.");
-            }
-        }
+        //public void Reagendar(DateTime novaHoraDeInicio, DateTime novaHoraDeTermino)
+        //{
+            //if (novaHoraDeInicio < novaHoraDeTermino)
+            //{
+                //HoraDeInicio = novaHoraDeInicio;
+                //HoraDeTermino = novaHoraDeTermino;
+            //}
+            //else
+            //{
+                //throw new ArgumentException("A hora de término deve ser posterior à hora de início.");
+            //}
+        //}
     }
 }

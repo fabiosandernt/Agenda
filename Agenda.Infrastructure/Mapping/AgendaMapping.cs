@@ -15,6 +15,8 @@ namespace Agenda.Infrastructure.Mapping
 
             builder.HasMany(x => x.Contatos).WithOne(x => x.Agenda);
             builder.HasMany(x=>x.Compromissos).WithOne(x=>x.Agenda);
+
+            
         }
     }
 }

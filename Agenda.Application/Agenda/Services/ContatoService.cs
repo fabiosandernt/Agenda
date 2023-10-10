@@ -9,7 +9,6 @@ namespace Agenda.Application.Agenda.Services
     {
         private readonly IAgendaRepository _agendaRepository;
         private readonly IContatoRepository _contatoRepository;
-        private readonly IAgendaRepository _agendaRepository;
         private readonly IMapper _mapper;
 
 
@@ -18,7 +17,6 @@ namespace Agenda.Application.Agenda.Services
             _agendaRepository = agendaRepository;
             _contatoRepository = contatoRepository;
             _mapper = mapper;
-            _agendaRepository = agendaRepository;
         }
 
         public async Task<ContatoDto> CreateContatoAsync(ContatoDto dto, Guid id)

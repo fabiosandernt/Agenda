@@ -9,9 +9,10 @@ namespace Agenda.Application.Agenda.Dtos
 {
     public class AgendaBookDto
     {
-        public  Guid Id { get; set; }
+        //public  Guid Id { get; set; }
         public string Nome { get; set; }
-        public virtual List<ContatoDto> ContatosDto { get; set; } = new List<ContatoDto>();
+        public Guid UsuarioId { get; set; }
+        //public virtual List<ContatoDto> ContatosDto { get; set; } = new List<ContatoDto>();
         
     }
 }

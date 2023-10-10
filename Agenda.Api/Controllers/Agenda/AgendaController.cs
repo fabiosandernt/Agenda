@@ -18,15 +18,15 @@ namespace Agenda.Api.Controllers.Agenda
 
         [HttpPost("criar")]
 
-        public async Task<IActionResult> CreateAgendaBookAsync([FromQuery] AgendaBookDto agendaBookDto)
+        public async Task<IActionResult> CreateAgendaBookAsync([FromQuery] AgendaBookDto agendadto)
         {
             try
             {
-                if ( agendaBookDto == null)
+                if ( agendadto == null)
                 {
                     return BadRequest("Dados inválidos.");
                 }
-                var novaAgenda = await _agendaService.CreateAgendaAsync(agendaBookDto);
+                var novaAgenda = await _agendaService.CreateAgendaAsync(agendadto);
 
                 return Ok(novaAgenda);
             }
