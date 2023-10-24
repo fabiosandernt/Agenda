@@ -12,18 +12,6 @@ namespace Agenda.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Agendas",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Agendas", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Calendarios",
                 columns: table => new
                 {
@@ -41,7 +29,9 @@ namespace Agenda.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TipoUsuario = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,7 +39,26 @@ namespace Agenda.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Compromissos",
+                name: "Agendas",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Agendas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Agendas_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Compromisso",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -61,9 +70,9 @@ namespace Agenda.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Compromissos", x => x.Id);
+                    table.PrimaryKey("PK_Compromisso", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Compromissos_Agendas_AgendaId",
+                        name: "FK_Compromisso_Agendas_AgendaId",
                         column: x => x.AgendaId,
                         principalTable: "Agendas",
                         principalColumn: "Id",
@@ -91,8 +100,13 @@ namespace Agenda.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Compromissos_AgendaId",
-                table: "Compromissos",
+                name: "IX_Agendas_UsuarioId",
+                table: "Agendas",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Compromisso_AgendaId",
+                table: "Compromisso",
                 column: "AgendaId");
 
             migrationBuilder.CreateIndex(
@@ -108,16 +122,16 @@ namespace Agenda.Infrastructure.Migrations
                 name: "Calendarios");
 
             migrationBuilder.DropTable(
-                name: "Compromissos");
+                name: "Compromisso");
 
             migrationBuilder.DropTable(
                 name: "Contatos");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Agendas");
 
             migrationBuilder.DropTable(
-                name: "Agendas");
+                name: "Usuarios");
         }
     }
 }

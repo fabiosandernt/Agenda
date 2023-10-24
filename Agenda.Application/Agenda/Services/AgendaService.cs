@@ -1,6 +1,8 @@
-﻿using Agenda.Application.Agenda.Dtos;
+﻿using Agenda.Application.Account.Dtos;
+using Agenda.Application.Agenda.Dtos;
 using Agenda.Domain.Agendas;
 using Agenda.Domain.Agendas.Repository;
+using Agenda.Infrastructure.Repositories;
 using AutoMapper;
 
 namespace Agenda.Application.Agenda.Services
@@ -34,6 +36,37 @@ namespace Agenda.Application.Agenda.Services
             var agenda = await _agendaRepository.GetByIdAsync(id);
 
             return _mapper.Map<AgendaBookDto>(agenda);
-        }       
+        }
+        public async Task<AgendaBookDto> UpdateAgendaAsync(Guid id, AgendaBookDto dto)
+        {
+            var agenda = await _agendaRepository.GetByIdAsync(id);
+            agenda.Update(dto.Nome);
+            if (agenda == null)
+
+            {
+                throw new Exception("Agenda não existe");
+            }
+            await _agendaRepository.UpdateAsync(agenda);
+            return _mapper.Map<AgendaBookDto>(agenda);
+
+        }
+
+        public async Task<AgendaBookDto> DeleteAgendaAsync(Guid id)
+        {
+            var agenda = await _agendaRepository.GetByIdAsync(id);
+            if (agenda == null)
+            {
+                throw new Exception("Agenda não existe");
+            }
+            await _agendaRepository.DeleteAsync(id);
+            return null;
+        }
+
+        public async Task<List<AgendaBookDto>> GetAllAsync()
+        {
+            var agendas = await _agendaRepository.GetAllAsync();
+
+            return _mapper.Map<List<AgendaBookDto>>(agendas);
+        }
     }
 }

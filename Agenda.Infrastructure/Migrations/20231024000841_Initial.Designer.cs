@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Agenda.Infrastructure.Migrations
 {
     [DbContext(typeof(AgendaContext))]
-    [Migration("20230926231851_Initial")]
+    [Migration("20231024000841_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -35,7 +35,12 @@ namespace Agenda.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Agendas", (string)null);
                 });
@@ -82,7 +87,7 @@ namespace Agenda.Infrastructure.Migrations
 
                     b.HasIndex("AgendaId");
 
-                    b.ToTable("Compromissos");
+                    b.ToTable("Compromisso", (string)null);
                 });
 
             modelBuilder.Entity("Agenda.Domain.Agendas.Contato", b =>
@@ -115,18 +120,28 @@ namespace Agenda.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<int>("TipoUsuario")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios", (string)null);
+                });
+
+            modelBuilder.Entity("Agenda.Domain.Agendas.AgendaBook", b =>
+                {
+                    b.HasOne("Agenda.Domain.Agendas.Usuario", "Usuario")
+                        .WithMany("AgendaBooks")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Agenda.Domain.Agendas.Compromisso", b =>
@@ -151,11 +166,62 @@ namespace Agenda.Infrastructure.Migrations
                     b.Navigation("Agenda");
                 });
 
+            modelBuilder.Entity("Agenda.Domain.Agendas.Usuario", b =>
+                {
+                    b.OwnsOne("Agenda.Domain.Agendas.ValueObject.Email", "Email", b1 =>
+                        {
+                            b1.Property<Guid>("UsuarioId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("Valor")
+                                .IsRequired()
+                                .HasMaxLength(1024)
+                                .HasColumnType("nvarchar(1024)")
+                                .HasColumnName("Email");
+
+                            b1.HasKey("UsuarioId");
+
+                            b1.ToTable("Usuarios");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UsuarioId");
+                        });
+
+                    b.OwnsOne("Agenda.Domain.Agendas.ValueObject.Password", "Password", b1 =>
+                        {
+                            b1.Property<Guid>("UsuarioId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("Valor")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("Password");
+
+                            b1.HasKey("UsuarioId");
+
+                            b1.ToTable("Usuarios");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UsuarioId");
+                        });
+
+                    b.Navigation("Email")
+                        .IsRequired();
+
+                    b.Navigation("Password")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Agenda.Domain.Agendas.AgendaBook", b =>
                 {
                     b.Navigation("Compromissos");
 
                     b.Navigation("Contatos");
+                });
+
+            modelBuilder.Entity("Agenda.Domain.Agendas.Usuario", b =>
+                {
+                    b.Navigation("AgendaBooks");
                 });
 #pragma warning restore 612, 618
         }

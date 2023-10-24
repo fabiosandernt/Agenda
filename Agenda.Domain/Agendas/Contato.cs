@@ -1,4 +1,5 @@
-﻿using Agenda.Domain.Base;
+﻿using Agenda.Domain.Agendas.ValueObject;
+using Agenda.Domain.Base;
 
 namespace Agenda.Domain.Agendas
 {
@@ -10,6 +11,11 @@ namespace Agenda.Domain.Agendas
         public AgendaBook Agenda { get; set; }
         protected Contato() 
         { 
+        }
+        public void Update(string nome, string telefone)
+        {
+            Nome = nome;
+            Telefone = telefone;
         }
     }
 }

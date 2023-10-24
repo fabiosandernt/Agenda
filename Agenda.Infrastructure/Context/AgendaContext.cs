@@ -1,5 +1,7 @@
 ﻿using Agenda.Domain.Agendas;
+using Agenda.Domain.Agendas.ValueObject;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Agenda.Infrastructure.Context
 {

@@ -42,7 +42,7 @@ namespace Agenda.Application.Agenda.Services
             }
            
         }
-        public async Task<ContatoDto> UpdateContatoAsync(Guid id)
+        public async Task<ContatoDto> UpdateContatoAsync(Guid id, ContatoDto dto)
         {
             var contato = await _contatoRepository.GetByIdAsync(id);
             if (contato == null)
@@ -50,6 +50,7 @@ namespace Agenda.Application.Agenda.Services
             {
                 throw new Exception("Contato não existe");
             }
+            contato.Update(dto.Nome, dto.Telefone);
             await _contatoRepository.UpdateAsync(contato);
             return _mapper.Map<ContatoDto>(contato);
 

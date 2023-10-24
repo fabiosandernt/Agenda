@@ -15,7 +15,7 @@ namespace Agenda.Domain.Agendas.ValueObject
         }
         public Email(string valor)
         {
-            this.Valor = valor ?? throw new ArgumentNullException(nameof(Password));
+            this.Valor = valor ?? throw new ArgumentNullException(nameof(Email));
         }
     }
 }

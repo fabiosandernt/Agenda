@@ -4,18 +4,18 @@ namespace Agenda.Domain.Base
 {
     public class SecurityUtils
     {
-        public static String HashSHA1(String text)
+        public static String HashSHA256(String text)
         {
-            return GetSHA1HashData(text);
+            return GetSHA256HashData(text);
         }
 
-        private static string GetSHA1HashData(string data)
+        private static string GetSHA256HashData(string data)
         {
-            SHA1CryptoServiceProvider SHA1 = new SHA1CryptoServiceProvider();
+            SHA256CryptoServiceProvider SHA256 = new SHA256CryptoServiceProvider();
             byte[] byteV = System.Text.Encoding.UTF8.GetBytes(data);
-            byte[] byteH = SHA1.ComputeHash(byteV);
+            byte[] byteH = SHA256.ComputeHash(byteV);
 
-            SHA1.Clear();
+            SHA256.Clear();
 
             return Convert.ToBase64String(byteH);
         

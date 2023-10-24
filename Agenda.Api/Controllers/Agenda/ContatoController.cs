@@ -38,7 +38,7 @@ namespace Agenda.Api.Controllers.Agenda
         {
             try
             {
-                var contatoAtualizado = await _contatoService.UpdateContatoAsync(id);
+                var contatoAtualizado = await _contatoService.UpdateContatoAsync(id,dto);
                 return Ok(contatoAtualizado);
             }
             catch (Exception ex)
