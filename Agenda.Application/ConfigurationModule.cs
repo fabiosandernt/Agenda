@@ -1,4 +1,5 @@
 ﻿using Agenda.Application.Account.Services;
+using Agenda.Application.Account.Services.JwtServices;
 using Agenda.Application.Agenda.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +23,8 @@ namespace Agenda.Application
             services.AddScoped<IAgendaService, AgendaService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<ICompromissoService, CompromissoService>();
+            services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IAuthService, AuthService>();
 
             services.AddHttpClient();
 

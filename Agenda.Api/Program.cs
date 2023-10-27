@@ -16,7 +16,7 @@ namespace Agenda.Api
 
             builder.Services
                 .RegisterApplication(builder.Configuration)
-                .RegisterRepository(builder.Configuration.GetConnectionString("AgendaApi"));
+                .RegisterRepository(builder.Configuration.GetConnectionString("AgenteApi"));
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

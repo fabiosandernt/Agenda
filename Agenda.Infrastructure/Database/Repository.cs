@@ -37,11 +37,11 @@ namespace Agenda.Infrastructure.Database
             await Context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
             try
             {
-                var consulta = await Query.ToListAsync();
+                var consulta = await this.Query.ToListAsync();
                 return consulta;
             }
             catch (Exception ex)

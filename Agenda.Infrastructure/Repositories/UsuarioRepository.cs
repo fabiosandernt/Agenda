@@ -2,18 +2,20 @@
 using Agenda.Domain.Agendas;
 using Agenda.Infrastructure.Context;
 using Agenda.Infrastructure.Database;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Agenda.Infrastructure.Repositories
 {
-    public class UsuarioRepository:Repository<Usuario>, IUsuarioRepository
+    public class UsuarioRepository : Repository<Usuario>, IUsuarioRepository
     {
         public UsuarioRepository(AgendaContext context) : base(context)
         {
+        }
+
+        public async Task<Usuario> GetByExpressionAsync(Expression<Func<Usuario, bool>> expression)
+        {
+            return await this.Query.FirstOrDefaultAsync(expression);
         }
     }
 }
