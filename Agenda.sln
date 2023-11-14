@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agenda.Api", "Agenda.Api\Ag
 		{36344EC6-0004-4CEA-975F-CE7AFE518DD9} = {36344EC6-0004-4CEA-975F-CE7AFE518DD9}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agenda.Front", "Agenda.Front\Agenda.Front.csproj", "{C5EC1602-7A01-4CDA-A43E-EB060D474753}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{E3B5236E-5E41-4F12-AFDE-D7A5A9E1CFA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3B5236E-5E41-4F12-AFDE-D7A5A9E1CFA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3B5236E-5E41-4F12-AFDE-D7A5A9E1CFA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5EC1602-7A01-4CDA-A43E-EB060D474753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5EC1602-7A01-4CDA-A43E-EB060D474753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5EC1602-7A01-4CDA-A43E-EB060D474753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5EC1602-7A01-4CDA-A43E-EB060D474753}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

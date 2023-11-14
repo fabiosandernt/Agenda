@@ -3,6 +3,6 @@
 namespace Agenda.Domain.Agendas.Repository
 {
     public interface IAgendaRepository :  IRepository<AgendaBook>
-    {
+    {       
     }
 }

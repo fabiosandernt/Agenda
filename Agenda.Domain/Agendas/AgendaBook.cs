@@ -22,5 +22,6 @@ namespace Agenda.Domain.Agendas
         {
             Nome = nome;
         }
+        
     }      
 }

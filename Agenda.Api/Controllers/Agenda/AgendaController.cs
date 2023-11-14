@@ -16,7 +16,7 @@ namespace Agenda.Api.Controllers.Agenda
         {
             _agendaService = agendaService;
         }
-
+        
         [HttpPost("criar")]
 
         public async Task<IActionResult> CreateAgendaBookAsync([FromQuery] AgendaBookDto agendadto)
@@ -100,6 +100,7 @@ namespace Agenda.Api.Controllers.Agenda
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um erro interno.");
             }
         }
+         
     }
 }
 
