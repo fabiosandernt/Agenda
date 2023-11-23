@@ -33,13 +33,13 @@ namespace Agenda.Application.Agenda.Services
             if (id == null)
                 throw new Exception("Id null, favor informar id");
 
-            var agenda = await _agendaRepository.GetByIdAsync(id);
+            var agenda = await _agendaRepository.GetByIdWithUserName(id);
 
             return _mapper.Map<AgendaBookDto>(agenda);
         }
         public async Task<AgendaBookDto> UpdateAgendaAsync(Guid id, AgendaBookDto dto)
         {
-            var agenda = await _agendaRepository.GetByIdAsync(id);
+            var agenda = await _agendaRepository.GetByIdWithUserName(id);
             agenda.Update(dto.Nome);
             if (agenda == null)
 
@@ -53,7 +53,7 @@ namespace Agenda.Application.Agenda.Services
 
         public async Task<AgendaBookDto> DeleteAgendaAsync(Guid id)
         {
-            var agenda = await _agendaRepository.GetByIdAsync(id);
+            var agenda = await _agendaRepository.GetByIdWithUserName(id);
             if (agenda == null)
             {
                 throw new Exception("Agenda não existe");
@@ -64,7 +64,7 @@ namespace Agenda.Application.Agenda.Services
 
         public async Task<List<AgendaBookDto>> GetAllAsync()
         {
-            var agendas = await _agendaRepository.GetAllAsync();
+            var agendas = await _agendaRepository.GetAllWithUserName();
 
             return _mapper.Map<List<AgendaBookDto>>(agendas);
         }

@@ -14,6 +14,13 @@ namespace Agenda.Domain.Agendas
 
         //EF
         protected Compromisso() { }
+        public void Update( string titulo, string descricao, DateTime horadeinicio, DateTime horadetermino)
+        {
+            Titulo = titulo;
+            Descricao = descricao;
+            HoraDeInicio = horadeinicio;
+            HoraDeTermino = horadetermino;
+        }
         //public void Reagendar(DateTime novaHoraDeInicio, DateTime novaHoraDeTermino)
         //{
             //if (novaHoraDeInicio < novaHoraDeTermino)

@@ -42,14 +42,15 @@ namespace Agenda.Application.Agenda.Services
             }
 
         }
-        public async Task<CompromissoDto> UpdateCompromissoAsync(Guid id)
+        public async Task<CompromissoDto> UpdateCompromissoAsync(Guid id, CompromissoDto dto)
         {
-            var compromisso = await _compromissoRepository.GetByIdAsync(id);
+            var compromisso = await _compromissoRepository.GetByIdWithAgenda(id);
             if (compromisso == null)
 
             {
                 throw new Exception("Compromisso não existe");
             }
+            compromisso.Update(dto.Titulo, dto.Descricao, dto.HoraDeInicio, dto.HoraDeTermino);
             await _compromissoRepository.UpdateAsync(compromisso);
             return _mapper.Map<CompromissoDto>(compromisso);
 
@@ -57,7 +58,7 @@ namespace Agenda.Application.Agenda.Services
 
         public async Task<CompromissoDto> DeleteCompromissoAsync(Guid id)
         {
-            var compromisso = await _compromissoRepository.GetByIdAsync(id);
+            var compromisso = await _compromissoRepository.GetByIdWithAgenda(id);
             if (compromisso == null)
             {
                 throw new Exception("Compromisso não existe");
@@ -68,7 +69,7 @@ namespace Agenda.Application.Agenda.Services
 
         public async Task<CompromissoDto> GetById(Guid id)
         {
-            var compromisso = await _compromissoRepository.GetByIdAsync(id);
+            var compromisso = await _compromissoRepository.GetByIdWithAgenda(id);
             if (compromisso == null)
                 throw new Exception("Compromisso não existe");
 
@@ -77,7 +78,7 @@ namespace Agenda.Application.Agenda.Services
 
         public async Task<List<CompromissoDto>> GetAllAsync()
         {
-            var compromissos = await _compromissoRepository.GetAllAsync();
+            var compromissos = await _compromissoRepository.GetAllWithAgenda();
 
             return _mapper.Map<List<CompromissoDto>>(compromissos);
         }

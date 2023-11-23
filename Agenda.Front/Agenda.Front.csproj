@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Contato\**" />
+    <Content Remove="Views\Contato\**" />
+    <EmbeddedResource Remove="Views\Contato\**" />
+    <None Remove="Views\Contato\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Agenda.Application\Agenda.Application.csproj" />
   </ItemGroup>
 

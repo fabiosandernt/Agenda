@@ -1,4 +1,4 @@
-﻿@model Agenda.Domain.Agendas.AgendaBook
+﻿@model Agenda.Application.Agenda.Dtos.AgendaBookDto;
 
 @{
     ViewData["Title"] = "Delete";
@@ -18,10 +18,10 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Usuario)
+            @Html.DisplayNameFor(model => model.UsuarioDto)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Usuario.Nome)
+            @Html.DisplayFor(model => model.UsuarioDto.Nome)
         </dd>
     </dl>
     

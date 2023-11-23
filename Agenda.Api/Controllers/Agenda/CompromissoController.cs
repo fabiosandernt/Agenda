@@ -38,7 +38,7 @@ namespace Agenda.Api.Controllers.Agenda
         {
             try
             {
-                var compromissoAtualizado = await _compromissoService.UpdateCompromissoAsync(id);
+                var compromissoAtualizado = await _compromissoService.UpdateCompromissoAsync(id,dto);
                 return Ok(compromissoAtualizado);
             }
             catch (Exception ex)

@@ -9,5 +9,7 @@ namespace Agenda.Domain.Agendas.Repository
 {
     public interface ICompromissoRepository : IRepository<Compromisso>
     {
+        Task<List<Compromisso>> GetAllWithAgenda();
+        Task<Compromisso> GetByIdWithAgenda(Guid id);
     }
 }

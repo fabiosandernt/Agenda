@@ -15,7 +15,7 @@ namespace Agenda.Infrastructure.Context
 
             var builder = new DbContextOptionsBuilder<AgendaContext>();
             var connectionString =
-                config.GetConnectionString("AgenteApi");
+                config.GetConnectionString("AgendaApi");
             builder.UseSqlServer(connectionString);
             Console.WriteLine(connectionString);
             return new AgendaContext(builder.Options);

@@ -1,5 +1,7 @@
 ﻿
 
+using Agenda.Application.Agenda.Dtos;
+using Agenda.Domain.Agendas;
 using Agenda.Domain.Agendas.Enum;
 using Agenda.Domain.Agendas.ValueObject;
 using Microsoft.AspNetCore.Identity;
@@ -13,5 +15,6 @@ namespace Agenda.Application.Account.Dtos
         public Email Email { get; set; }
         public Password Password { get; set; }
         public TipoUsuarioEnum TipoUsuario { get; set; }
+        public List<AgendaBookDto> AgendaDtos { get; set; } = new List<AgendaBookDto>();
     }
 }

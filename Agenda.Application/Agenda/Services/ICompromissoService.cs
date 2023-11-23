@@ -12,7 +12,7 @@ namespace Agenda.Application.Agenda.Services
         Task<CompromissoDto> CreateCompromissoAsync(CompromissoDto dto, Guid id);
         Task<List<CompromissoDto>> GetAllAsync();
         Task<CompromissoDto> GetById(Guid id);
-        Task<CompromissoDto> UpdateCompromissoAsync(Guid id);
+        Task<CompromissoDto> UpdateCompromissoAsync(Guid id, CompromissoDto dto);
         Task<CompromissoDto> DeleteCompromissoAsync(Guid id);
     }
 }

@@ -14,7 +14,19 @@ namespace Agenda.Infrastructure.Repositories
     public class ContatoRepository : Repository<Contato>, IContatoRepository
     {
         public ContatoRepository(AgendaContext context) : base(context)
-        {                
+        {
+        }
+
+        public async Task<List<Contato>> GetWithIncludeAgenda()
+        {
+            var contatos = await this.Query.Include(x => x.Agenda).ToListAsync();
+            return contatos;
+        }
+        public async Task<Contato> GetByIdWithIncludeAgenda(Guid id)
+        {
+            var contato = await Query.Include(x => x.Agenda)
+                .FirstOrDefaultAsync(x=>x.Id==id);
+            return contato;
         }
     }
 }

@@ -12,7 +12,9 @@ namespace Agenda.Infrastructure.Mapping
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Telefone);
-            builder.Property(x => x.Nome);            
+            builder.Property(x => x.Nome);
+
+            builder.HasOne(x => x.Agenda).WithMany(x => x.Contatos);
       
         }
     }

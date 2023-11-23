@@ -1,4 +1,4 @@
-﻿@model Agenda.Domain.Agendas.Contato
+﻿@model Agenda.Application.Agenda.Dtos.ContatoDto
 
 @{
     ViewData["Title"] = "Details";
@@ -23,10 +23,10 @@
             @Html.DisplayFor(model => model.Telefone)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Agenda)
+            @Html.DisplayNameFor(model => model.AgendaDto.Nome)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Agenda.Nome)
+            @Html.DisplayFor(model => model.AgendaDto.Nome)
         </dd>
     </dl>
 </div>

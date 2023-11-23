@@ -28,8 +28,6 @@ namespace Agenda.Application.Agenda.Services
             try
             {                
                 var contato = _mapper.Map<Contato>(dto);
-
-
                 var agenda = await _agendaRepository.GetByIdAsync(id);
                 contato.AgendaId = agenda.Id;
                 await _contatoRepository.AddAsync(contato);              
@@ -44,7 +42,7 @@ namespace Agenda.Application.Agenda.Services
         }
         public async Task<ContatoDto> UpdateContatoAsync(Guid id, ContatoDto dto)
         {
-            var contato = await _contatoRepository.GetByIdAsync(id);
+            var contato = await _contatoRepository.GetByIdWithIncludeAgenda(id);
             if (contato == null)
 
             {
@@ -58,7 +56,7 @@ namespace Agenda.Application.Agenda.Services
 
         public async Task<ContatoDto> DeleteContatoAsync(Guid id)
         {
-            var contato = await _contatoRepository.GetByIdAsync(id);
+            var contato = await _contatoRepository.GetByIdWithIncludeAgenda(id);
             if (contato == null)
             {
                 throw new Exception("Contato não existe");
@@ -69,7 +67,7 @@ namespace Agenda.Application.Agenda.Services
 
         public async Task<ContatoDto> GetById(Guid id)
         {
-            var contato = await _contatoRepository.GetByIdAsync(id);
+            var contato = await _contatoRepository.GetByIdWithIncludeAgenda(id);
             if (contato == null)
                 throw new Exception("Contato não existe");
 
@@ -78,9 +76,21 @@ namespace Agenda.Application.Agenda.Services
 
         public async Task<List<ContatoDto>> GetAllAsync()
         {
-            var contatos = await _contatoRepository.GetAllAsync(); 
+            var contatos = await _contatoRepository.GetWithIncludeAgenda();
+            var retorno = _mapper.Map<List<ContatoDto>>(contatos);
 
-            return _mapper.Map<List<ContatoDto>>(contatos); 
+            return (retorno);
         }
+        //public async Task<List<ContatoDto>> GetAllAsync()
+        //{
+        //    var contatos = await _contatoRepository.GetWithIncludeAgenda();
+        //    var retorno = contatos.Select(x =>
+        //    {
+        //        var contatoDto = _mapper.Map<ContatoDto>(x);
+        //        contatoDto.AgendaDto = _mapper.Map<AgendaBookDto>(x.Agenda);
+        //        return contatoDto;
+        //    }).ToList();
+        //    return retorno;
+        //}
     }
 }

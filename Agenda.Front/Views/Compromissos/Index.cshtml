@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Agenda.Domain.Agendas.Compromisso>
+﻿@model IEnumerable<Agenda.Application.Agenda.Dtos.CompromissoDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -25,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.HoraDeTermino)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Agenda)
+                @Html.DisplayNameFor(model => model.AgendaDto)
             </th>
             <th></th>
         </tr>
@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.HoraDeTermino)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Agenda.Nome)
+                @Html.DisplayFor(modelItem => item.AgendaDto.Nome)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

@@ -13,7 +13,7 @@ namespace Agenda.Infrastructure.Mapping
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Nome);
 
-            builder.HasMany(x => x.Contatos).WithOne(x => x.Agenda);
+            //builder.HasMany(x => x.Contatos).WithOne(x => x.Agenda);
             builder.HasMany(x=>x.Compromissos).WithOne(x=>x.Agenda);
 
             
